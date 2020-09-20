@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56DE51E225176E44003E258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E125176E44003E258C /* AppDelegate.swift */; };
+		56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E325176E44003E258C /* SceneDelegate.swift */; };
+		56DE51E625176E44003E258C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E525176E44003E258C /* ViewController.swift */; };
+		56DE51E925176E44003E258C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DE51E725176E44003E258C /* Main.storyboard */; };
+		56DE51EC25176E44003E258C /* TuraTalalo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51EA25176E44003E258C /* TuraTalalo.xcdatamodeld */; };
+		56DE51EE25176E47003E258C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56DE51ED25176E47003E258C /* Assets.xcassets */; };
+		56DE51F125176E47003E258C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DE51EF25176E47003E258C /* LaunchScreen.storyboard */; };
+		56DE51FC25176E47003E258C /* TuraTalaloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51FB25176E47003E258C /* TuraTalaloTests.swift */; };
+		56DE520725176E47003E258C /* TuraTalaloUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE520625176E47003E258C /* TuraTalaloUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56DE51F825176E47003E258C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56DE51D625176E44003E258C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56DE51DD25176E44003E258C;
+			remoteInfo = TuraTalalo;
+		};
+		56DE520325176E47003E258C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56DE51D625176E44003E258C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56DE51DD25176E44003E258C;
+			remoteInfo = TuraTalalo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		56DE51DE25176E44003E258C /* TuraTalalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuraTalalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DE51E125176E44003E258C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		56DE51E325176E44003E258C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		56DE51E525176E44003E258C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		56DE51E825176E44003E258C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		56DE51EB25176E44003E258C /* TuraTalalo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TuraTalalo.xcdatamodel; sourceTree = "<group>"; };
+		56DE51ED25176E47003E258C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		56DE51F025176E47003E258C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		56DE51F225176E47003E258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56DE51F725176E47003E258C /* TuraTalaloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuraTalaloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DE51FB25176E47003E258C /* TuraTalaloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuraTalaloTests.swift; sourceTree = "<group>"; };
+		56DE51FD25176E47003E258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56DE520225176E47003E258C /* TuraTalaloUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuraTalaloUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DE520625176E47003E258C /* TuraTalaloUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuraTalaloUITests.swift; sourceTree = "<group>"; };
+		56DE520825176E47003E258C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		56DE51DB25176E44003E258C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE51F425176E47003E258C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE51FF25176E47003E258C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		56DE51D525176E44003E258C = {
+			isa = PBXGroup;
+			children = (
+				56DE51E025176E44003E258C /* TuraTalalo */,
+				56DE51FA25176E47003E258C /* TuraTalaloTests */,
+				56DE520525176E47003E258C /* TuraTalaloUITests */,
+				56DE51DF25176E44003E258C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		56DE51DF25176E44003E258C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				56DE51DE25176E44003E258C /* TuraTalalo.app */,
+				56DE51F725176E47003E258C /* TuraTalaloTests.xctest */,
+				56DE520225176E47003E258C /* TuraTalaloUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		56DE51E025176E44003E258C /* TuraTalalo */ = {
+			isa = PBXGroup;
+			children = (
+				56DE51E125176E44003E258C /* AppDelegate.swift */,
+				56DE51E325176E44003E258C /* SceneDelegate.swift */,
+				56DE51E525176E44003E258C /* ViewController.swift */,
+				56DE51E725176E44003E258C /* Main.storyboard */,
+				56DE51ED25176E47003E258C /* Assets.xcassets */,
+				56DE51EF25176E47003E258C /* LaunchScreen.storyboard */,
+				56DE51F225176E47003E258C /* Info.plist */,
+				56DE51EA25176E44003E258C /* TuraTalalo.xcdatamodeld */,
+			);
+			path = TuraTalalo;
+			sourceTree = "<group>";
+		};
+		56DE51FA25176E47003E258C /* TuraTalaloTests */ = {
+			isa = PBXGroup;
+			children = (
+				56DE51FB25176E47003E258C /* TuraTalaloTests.swift */,
+				56DE51FD25176E47003E258C /* Info.plist */,
+			);
+			path = TuraTalaloTests;
+			sourceTree = "<group>";
+		};
+		56DE520525176E47003E258C /* TuraTalaloUITests */ = {
+			isa = PBXGroup;
+			children = (
+				56DE520625176E47003E258C /* TuraTalaloUITests.swift */,
+				56DE520825176E47003E258C /* Info.plist */,
+			);
+			path = TuraTalaloUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		56DE51DD25176E44003E258C /* TuraTalalo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56DE520B25176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalalo" */;
+			buildPhases = (
+				56DE51DA25176E44003E258C /* Sources */,
+				56DE51DB25176E44003E258C /* Frameworks */,
+				56DE51DC25176E44003E258C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TuraTalalo;
+			productName = TuraTalalo;
+			productReference = 56DE51DE25176E44003E258C /* TuraTalalo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		56DE51F625176E47003E258C /* TuraTalaloTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56DE520E25176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalaloTests" */;
+			buildPhases = (
+				56DE51F325176E47003E258C /* Sources */,
+				56DE51F425176E47003E258C /* Frameworks */,
+				56DE51F525176E47003E258C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56DE51F925176E47003E258C /* PBXTargetDependency */,
+			);
+			name = TuraTalaloTests;
+			productName = TuraTalaloTests;
+			productReference = 56DE51F725176E47003E258C /* TuraTalaloTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		56DE520125176E47003E258C /* TuraTalaloUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56DE521125176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalaloUITests" */;
+			buildPhases = (
+				56DE51FE25176E47003E258C /* Sources */,
+				56DE51FF25176E47003E258C /* Frameworks */,
+				56DE520025176E47003E258C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56DE520425176E47003E258C /* PBXTargetDependency */,
+			);
+			name = TuraTalaloUITests;
+			productName = TuraTalaloUITests;
+			productReference = 56DE520225176E47003E258C /* TuraTalaloUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		56DE51D625176E44003E258C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					56DE51DD25176E44003E258C = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					56DE51F625176E47003E258C = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 56DE51DD25176E44003E258C;
+					};
+					56DE520125176E47003E258C = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 56DE51DD25176E44003E258C;
+					};
+				};
+			};
+			buildConfigurationList = 56DE51D925176E44003E258C /* Build configuration list for PBXProject "TuraTalalo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 56DE51D525176E44003E258C;
+			productRefGroup = 56DE51DF25176E44003E258C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				56DE51DD25176E44003E258C /* TuraTalalo */,
+				56DE51F625176E47003E258C /* TuraTalaloTests */,
+				56DE520125176E47003E258C /* TuraTalaloUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		56DE51DC25176E44003E258C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DE51F125176E47003E258C /* LaunchScreen.storyboard in Resources */,
+				56DE51EE25176E47003E258C /* Assets.xcassets in Resources */,
+				56DE51E925176E44003E258C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE51F525176E47003E258C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE520025176E47003E258C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		56DE51DA25176E44003E258C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DE51EC25176E44003E258C /* TuraTalalo.xcdatamodeld in Sources */,
+				56DE51E625176E44003E258C /* ViewController.swift in Sources */,
+				56DE51E225176E44003E258C /* AppDelegate.swift in Sources */,
+				56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE51F325176E47003E258C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DE51FC25176E47003E258C /* TuraTalaloTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DE51FE25176E47003E258C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DE520725176E47003E258C /* TuraTalaloUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		56DE51F925176E47003E258C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56DE51DD25176E44003E258C /* TuraTalalo */;
+			targetProxy = 56DE51F825176E47003E258C /* PBXContainerItemProxy */;
+		};
+		56DE520425176E47003E258C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 56DE51DD25176E44003E258C /* TuraTalalo */;
+			targetProxy = 56DE520325176E47003E258C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		56DE51E725176E44003E258C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56DE51E825176E44003E258C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		56DE51EF25176E47003E258C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56DE51F025176E47003E258C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		56DE520925176E47003E258C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		56DE520A25176E47003E258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		56DE520C25176E47003E258C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalalo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalalo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		56DE520D25176E47003E258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalalo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalalo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		56DE520F25176E47003E258C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalaloTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalaloTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TuraTalalo.app/TuraTalalo";
+			};
+			name = Debug;
+		};
+		56DE521025176E47003E258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalaloTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalaloTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TuraTalalo.app/TuraTalalo";
+			};
+			name = Release;
+		};
+		56DE521225176E47003E258C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalaloUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalaloUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TuraTalalo;
+			};
+			name = Debug;
+		};
+		56DE521325176E47003E258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				INFOPLIST_FILE = TuraTalaloUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalaloUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TuraTalalo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56DE51D925176E44003E258C /* Build configuration list for PBXProject "TuraTalalo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56DE520925176E47003E258C /* Debug */,
+				56DE520A25176E47003E258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56DE520B25176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalalo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56DE520C25176E47003E258C /* Debug */,
+				56DE520D25176E47003E258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56DE520E25176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalaloTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56DE520F25176E47003E258C /* Debug */,
+				56DE521025176E47003E258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56DE521125176E47003E258C /* Build configuration list for PBXNativeTarget "TuraTalaloUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56DE521225176E47003E258C /* Debug */,
+				56DE521325176E47003E258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		56DE51EA25176E44003E258C /* TuraTalalo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				56DE51EB25176E44003E258C /* TuraTalalo.xcdatamodel */,
+			);
+			currentVersion = 56DE51EB25176E44003E258C /* TuraTalalo.xcdatamodel */;
+			path = TuraTalalo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 56DE51D625176E44003E258C /* Project object */;
+}
