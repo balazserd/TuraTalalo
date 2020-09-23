@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		563DF881251A50DC00FC3313 /* MapFileInputSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */; };
+		563DF88E251B5AC600FC3313 /* MapFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF88D251B5AC600FC3313 /* MapFileReader.swift */; };
+		563DF893251B5B2B00FC3313 /* MapFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF892251B5B2B00FC3313 /* MapFileInfo.swift */; };
+		563DF89C251B60B600FC3313 /* TileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF89B251B60B600FC3313 /* TileKey.swift */; };
+		563DF8A2251B660700FC3313 /* LatLon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF8A1251B660700FC3313 /* LatLon.swift */; };
+		563DF8AE251B853900FC3313 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF8AD251B853900FC3313 /* Transformations.swift */; };
 		56DE51E225176E44003E258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E125176E44003E258C /* AppDelegate.swift */; };
 		56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E325176E44003E258C /* SceneDelegate.swift */; };
 		56DE51E625176E44003E258C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E525176E44003E258C /* ViewController.swift */; };
@@ -36,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileInputSerializer.swift; sourceTree = "<group>"; };
+		563DF88D251B5AC600FC3313 /* MapFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileReader.swift; sourceTree = "<group>"; };
+		563DF892251B5B2B00FC3313 /* MapFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileInfo.swift; sourceTree = "<group>"; };
+		563DF89B251B60B600FC3313 /* TileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileKey.swift; sourceTree = "<group>"; };
+		563DF8A1251B660700FC3313 /* LatLon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatLon.swift; sourceTree = "<group>"; };
+		563DF8AD251B853900FC3313 /* Transformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
 		56DE51DE25176E44003E258C /* TuraTalalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuraTalalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DE51E125176E44003E258C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56DE51E325176E44003E258C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +90,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		563DF87F251A4CFD00FC3313 /* MapsforgeReader-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				563DF8A9251B6B3D00FC3313 /* Utilities */,
+				563DF89A251B60A700FC3313 /* Rendering */,
+				563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */,
+				563DF88D251B5AC600FC3313 /* MapFileReader.swift */,
+				563DF892251B5B2B00FC3313 /* MapFileInfo.swift */,
+			);
+			path = "MapsforgeReader-Swift";
+			sourceTree = "<group>";
+		};
+		563DF89A251B60A700FC3313 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				563DF8A0251B65FB00FC3313 /* Geometry */,
+				563DF89B251B60B600FC3313 /* TileKey.swift */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		563DF8A0251B65FB00FC3313 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				563DF8A1251B660700FC3313 /* LatLon.swift */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		563DF8A9251B6B3D00FC3313 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				563DF8AD251B853900FC3313 /* Transformations.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		56DE51D525176E44003E258C = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +150,7 @@
 		56DE51E025176E44003E258C /* TuraTalalo */ = {
 			isa = PBXGroup;
 			children = (
+				563DF87F251A4CFD00FC3313 /* MapsforgeReader-Swift */,
 				56DE51E125176E44003E258C /* AppDelegate.swift */,
 				56DE51E325176E44003E258C /* SceneDelegate.swift */,
 				56DE51E525176E44003E258C /* ViewController.swift */,
@@ -261,10 +311,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563DF881251A50DC00FC3313 /* MapFileInputSerializer.swift in Sources */,
+				563DF8A2251B660700FC3313 /* LatLon.swift in Sources */,
 				56DE51EC25176E44003E258C /* TuraTalalo.xcdatamodeld in Sources */,
+				563DF8AE251B853900FC3313 /* Transformations.swift in Sources */,
+				563DF893251B5B2B00FC3313 /* MapFileInfo.swift in Sources */,
 				56DE51E625176E44003E258C /* ViewController.swift in Sources */,
+				563DF89C251B60B600FC3313 /* TileKey.swift in Sources */,
 				56DE51E225176E44003E258C /* AppDelegate.swift in Sources */,
 				56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */,
+				563DF88E251B5AC600FC3313 /* MapFileReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,15 +498,25 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
+				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 				INFOPLIST_FILE = TuraTalalo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				J2OBJC_HOME = "/Users/balazserdesz/j2objc-2.7";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
+				OTHER_LDFLAGS = (
+					"-ljre_emul",
+					"-liconv",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalalo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 			};
 			name = Debug;
 		};
@@ -461,15 +527,25 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B9J6J6XB6U;
+				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
+				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 				INFOPLIST_FILE = TuraTalalo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				J2OBJC_HOME = "/Users/balazserdesz/j2objc-2.7";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
+				OTHER_LDFLAGS = (
+					"-ljre_emul",
+					"-liconv",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.EBUniApps.TuraTalalo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 			};
 			name = Release;
 		};
