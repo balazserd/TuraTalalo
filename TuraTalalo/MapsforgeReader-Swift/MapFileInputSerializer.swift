@@ -20,7 +20,7 @@ final class MapFileInputSerializer {
     private var fileHandle: FileHandle
 
     init(fileUrl: URL) throws {
-        guard let fh = try? FileHandle(forReadingFrom: fileUrl) else { throw Error.couldNotInitializeFileHandle}
+        let fh = try! FileHandle(forReadingFrom: fileUrl)
         fileHandle = fh
     }
 
@@ -64,7 +64,7 @@ final class MapFileInputSerializer {
 
         while true {
             guard let byteData = try? fileHandle.read(upToCount: 1) else { fatalError() }
-            let byteValue = byteData.withUnsafeBytes { $0.load(as: UInt8.self) }
+            let byteValue = UInt8(bigEndian: byteData.withUnsafeBytes { $0.load(as: UInt8.self) })
 
             value |= (UInt64(byteValue) & _0x7full) << shift
             shift += 7
@@ -100,7 +100,7 @@ final class MapFileInputSerializer {
 
         while true {
             guard let byteData = try? fileHandle.read(upToCount: 1) else { fatalError() }
-            byteValue = byteData.withUnsafeBytes { $0.load(as: UInt8.self) }
+            byteValue = UInt8(bigEndian: byteData.withUnsafeBytes { $0.load(as: UInt8.self) })
 
             if byteValue & 0x80 == 0 { break } //0 at 128 means this is the last byte
             value |= Int64((UInt64(byteValue) & _0x7full) << shift)
@@ -118,8 +118,6 @@ final class MapFileInputSerializer {
     //MARK:- String reader
     func readUTF8EncodedString() throws -> String {
         let length = Int(try! readVarUInt64())
-        let stringBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
-        defer { stringBuffer.deallocate() }
 
         guard let stringData = try? fileHandle.read(upToCount: length) else { fatalError() }
         guard let str = String(data: stringData, encoding: .utf8) else { fatalError() }
@@ -128,7 +126,9 @@ final class MapFileInputSerializer {
     }
     func readOffset() -> Int64 {
         guard let charsData = try? fileHandle.read(upToCount: 5) else { fatalError() }
-        let charArray = charsData.withUnsafeBytes { $0.load(as: [UTF8Char].self)}
+        var charArray = Array(repeating: UTF8Char(), count: 5)
+        _  = charArray.withUnsafeMutableBytes { charsData.copyBytes(to: $0) }
+        charArray = charArray.map { UTF8Char(bigEndian: $0) }
 
         let value =
             Int64((Int32(charArray[0]) & _0xffl)) << 32
@@ -140,12 +140,14 @@ final class MapFileInputSerializer {
         return value
     }
     //MARK:- Misc
-    func read(numberOfBytes n: Int) -> Int {
-        guard let _ = try? fileHandle.read(upToCount: n) else { fatalError() }
-        return n
+    func readAndDiscard(numberOfBytes n: Int) {
+        _ = try! fileHandle.read(upToCount: n)
     }
     func movePointer(toFileOffset offset: UInt64) {
         try! fileHandle.seek(toOffset: offset)
+    }
+    func currentPointerPosition() -> UInt64 {
+        try! fileHandle.offset()
     }
 }
 

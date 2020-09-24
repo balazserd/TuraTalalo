@@ -43,9 +43,9 @@ final class Transformation {
         py = (my + originalShift) / res
     }
     //MARK:- Tile related conversions and calculations
-    class func pixelsToTile(_ px: CGFloat, _ py: CGFloat, _ tx: inout Int32, _ ty: inout Int32) {
-        tx = Int32(ceil(px / CGFloat(tileSize)) - 1)
-        ty = Int32(ceil(py / CGFloat(tileSize)) - 1)
+    class func pixelsToTile(_ px: CGFloat, _ py: CGFloat, _ tx: inout UInt32, _ ty: inout UInt32) {
+        tx = UInt32(ceil(px / CGFloat(tileSize)) - 1)
+        ty = UInt32(ceil(py / CGFloat(tileSize)) - 1)
     }
 
     class func tileToPixels(_ tx: UInt32, _ ty: UInt32, _ px: inout CGFloat, _ py: inout CGFloat) {
@@ -53,7 +53,7 @@ final class Transformation {
         py = CGFloat(ty) * tileSize
     }
 
-    class func metersToTile(_ mx: CGFloat, _ my: CGFloat, _ zoom: UInt32, _ tx: inout Int32, _ ty: inout Int32) {
+    class func metersToTile(_ mx: CGFloat, _ my: CGFloat, _ zoom: UInt32, _ tx: inout UInt32, _ ty: inout UInt32) {
         var px = CGFloat(), py = CGFloat()
         metersToPixels(mx, my, zoom, &px, &py)
         pixelsToTile(px, py, &tx, &ty)
@@ -78,7 +78,7 @@ final class Transformation {
 
     class func tilesWithinBounds(_ minLat: CGFloat, _ minLon: CGFloat, _ maxLat: CGFloat, _ maxLon: CGFloat,
                                  _ zoom: UInt32,
-                                 _ txMin: inout Int32, _ tyMin: inout Int32, _ txMax: inout Int32, _ tyMax: inout Int32) {
+                                 _ txMin: inout UInt32, _ tyMin: inout UInt32, _ txMax: inout UInt32, _ tyMax: inout UInt32) {
         var minX = CGFloat(), minY = CGFloat(), maxX = CGFloat(), maxY = CGFloat()
         latLonToMeters(minLat, minLon, &minX, &minY)
         latLonToMeters(maxLat, maxLon, &maxX, &maxY)

@@ -44,9 +44,9 @@ struct MapFileInfo {
         var size: UInt64 = UInt64()
 
         var tileOffsets: [Int64] = [Int64]()
-        var tileXMin: Int32 = Int32()
-        var tileYMin: Int32 = Int32()
-        var tileXMax: Int32 = Int32()
-        var tileYMax: Int32 = Int32()
+        var tileXMin: UInt32 = UInt32()
+        var tileYMin: UInt32 = UInt32()
+        var tileXMax: UInt32 = UInt32()
+        var tileYMax: UInt32 = UInt32()
     }
 }
