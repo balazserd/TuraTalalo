@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,19 @@
 		563DF89C251B60B600FC3313 /* TileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF89B251B60B600FC3313 /* TileKey.swift */; };
 		563DF8AE251B853900FC3313 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF8AD251B853900FC3313 /* Transformations.swift */; };
 		565F3EED251D2E0C0035B06D /* HungarianTouristMap.map in Resources */ = {isa = PBXBuildFile; fileRef = 565F3EE9251D2AF60035B06D /* HungarianTouristMap.map */; };
+		565F4FD9251DFAE90035B06D /* RenderTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FD8251DFAE90035B06D /* RenderTheme.swift */; };
+		565F4FDE251E00AC0035B06D /* RenderingRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FDD251E00AC0035B06D /* RenderingRule.swift */; };
+		565F4FE3251E03290035B06D /* AreaInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FE2251E03290035B06D /* AreaInstruction.swift */; };
+		565F4FE8251E1FD40035B06D /* RenderingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FE7251E1FD40035B06D /* RenderingLayer.swift */; };
+		565F4FF7251E29960035B06D /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 565F4FF6251E29960035B06D /* SwiftyXMLParser */; };
+		565F4FFC251E2C770035B06D /* XMLTypeCaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FFB251E2C770035B06D /* XMLTypeCaster.swift */; };
+		565F5009251E48390035B06D /* RenderingInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F5008251E48390035B06D /* RenderingInstruction.swift */; };
+		565F5015251E4A9A0035B06D /* LineInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F5014251E4A9A0035B06D /* LineInstruction.swift */; };
+		5660D75B251E74DD007DC669 /* LineSymbolInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D75A251E74DD007DC669 /* LineSymbolInstruction.swift */; };
+		5660D760251E773E007DC669 /* CaptionInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D75F251E773E007DC669 /* CaptionInstruction.swift */; };
+		5660D765251E78AD007DC669 /* CircleInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D764251E78AD007DC669 /* CircleInstruction.swift */; };
+		5660D76A251E79BB007DC669 /* SymbolInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D769251E79BB007DC669 /* SymbolInstruction.swift */; };
+		5660D76F251E7AFB007DC669 /* PathTextInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */; };
 		56A23A3E251C9E5B00F43C69 /* ValueTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */; };
 		56DE51E225176E44003E258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E125176E44003E258C /* AppDelegate.swift */; };
 		56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E325176E44003E258C /* SceneDelegate.swift */; };
@@ -49,6 +62,18 @@
 		563DF89B251B60B600FC3313 /* TileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileKey.swift; sourceTree = "<group>"; };
 		563DF8AD251B853900FC3313 /* Transformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
 		565F3EE9251D2AF60035B06D /* HungarianTouristMap.map */ = {isa = PBXFileReference; explicitFileType = compiled; name = HungarianTouristMap.map; path = ../../../../../Downloads/HungarianTouristMap.map; sourceTree = "<group>"; };
+		565F4FD8251DFAE90035B06D /* RenderTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderTheme.swift; sourceTree = "<group>"; };
+		565F4FDD251E00AC0035B06D /* RenderingRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingRule.swift; sourceTree = "<group>"; };
+		565F4FE2251E03290035B06D /* AreaInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaInstruction.swift; sourceTree = "<group>"; };
+		565F4FE7251E1FD40035B06D /* RenderingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingLayer.swift; sourceTree = "<group>"; };
+		565F4FFB251E2C770035B06D /* XMLTypeCaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLTypeCaster.swift; sourceTree = "<group>"; };
+		565F5008251E48390035B06D /* RenderingInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingInstruction.swift; sourceTree = "<group>"; };
+		565F5014251E4A9A0035B06D /* LineInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInstruction.swift; sourceTree = "<group>"; };
+		5660D75A251E74DD007DC669 /* LineSymbolInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSymbolInstruction.swift; sourceTree = "<group>"; };
+		5660D75F251E773E007DC669 /* CaptionInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionInstruction.swift; sourceTree = "<group>"; };
+		5660D764251E78AD007DC669 /* CircleInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInstruction.swift; sourceTree = "<group>"; };
+		5660D769251E79BB007DC669 /* SymbolInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInstruction.swift; sourceTree = "<group>"; };
+		5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTextInstruction.swift; sourceTree = "<group>"; };
 		56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTypeWrapper.swift; sourceTree = "<group>"; };
 		56DE51DE25176E44003E258C /* TuraTalalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuraTalalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DE51E125176E44003E258C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				565F4FF7251E29960035B06D /* SwiftyXMLParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +134,13 @@
 		563DF89A251B60A700FC3313 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				565F5010251E494F0035B06D /* Instructions */,
 				563DF8A0251B65FB00FC3313 /* Geometry */,
 				563DF89B251B60B600FC3313 /* TileKey.swift */,
+				565F4FD8251DFAE90035B06D /* RenderTheme.swift */,
+				565F4FDD251E00AC0035B06D /* RenderingRule.swift */,
+				565F4FE7251E1FD40035B06D /* RenderingLayer.swift */,
+				565F4FFB251E2C770035B06D /* XMLTypeCaster.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -128,6 +159,21 @@
 				56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		565F5010251E494F0035B06D /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				565F4FE2251E03290035B06D /* AreaInstruction.swift */,
+				5660D75F251E773E007DC669 /* CaptionInstruction.swift */,
+				5660D764251E78AD007DC669 /* CircleInstruction.swift */,
+				565F5014251E4A9A0035B06D /* LineInstruction.swift */,
+				5660D75A251E74DD007DC669 /* LineSymbolInstruction.swift */,
+				5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */,
+				565F5008251E48390035B06D /* RenderingInstruction.swift */,
+				5660D769251E79BB007DC669 /* SymbolInstruction.swift */,
+			);
+			path = Instructions;
 			sourceTree = "<group>";
 		};
 		56DE51D525176E44003E258C = {
@@ -200,6 +246,9 @@
 			dependencies = (
 			);
 			name = TuraTalalo;
+			packageProductDependencies = (
+				565F4FF6251E29960035B06D /* SwiftyXMLParser */,
+			);
 			productName = TuraTalalo;
 			productReference = 56DE51DE25176E44003E258C /* TuraTalalo.app */;
 			productType = "com.apple.product-type.application";
@@ -271,6 +320,9 @@
 				Base,
 			);
 			mainGroup = 56DE51D525176E44003E258C;
+			packageReferences = (
+				565F4FF5251E29960035B06D /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
+			);
 			productRefGroup = 56DE51DF25176E44003E258C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -319,12 +371,24 @@
 				56DE51EC25176E44003E258C /* TuraTalalo.xcdatamodeld in Sources */,
 				563DF8AE251B853900FC3313 /* Transformations.swift in Sources */,
 				56A23A3E251C9E5B00F43C69 /* ValueTypeWrapper.swift in Sources */,
+				5660D76A251E79BB007DC669 /* SymbolInstruction.swift in Sources */,
+				565F4FDE251E00AC0035B06D /* RenderingRule.swift in Sources */,
 				563DF893251B5B2B00FC3313 /* MapFileInfo.swift in Sources */,
+				5660D765251E78AD007DC669 /* CircleInstruction.swift in Sources */,
+				565F4FE8251E1FD40035B06D /* RenderingLayer.swift in Sources */,
 				56DE51E625176E44003E258C /* ViewController.swift in Sources */,
+				5660D76F251E7AFB007DC669 /* PathTextInstruction.swift in Sources */,
+				5660D760251E773E007DC669 /* CaptionInstruction.swift in Sources */,
+				565F4FFC251E2C770035B06D /* XMLTypeCaster.swift in Sources */,
+				565F5009251E48390035B06D /* RenderingInstruction.swift in Sources */,
 				563DF89C251B60B600FC3313 /* TileKey.swift in Sources */,
+				565F5015251E4A9A0035B06D /* LineInstruction.swift in Sources */,
+				5660D75B251E74DD007DC669 /* LineSymbolInstruction.swift in Sources */,
+				565F4FD9251DFAE90035B06D /* RenderTheme.swift in Sources */,
 				56DE51E225176E44003E258C /* AppDelegate.swift in Sources */,
 				56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */,
 				563DF88E251B5AC600FC3313 /* MapFileReader.swift in Sources */,
+				565F4FE3251E03290035B06D /* AreaInstruction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +723,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		565F4FF5251E29960035B06D /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yahoojapan/SwiftyXMLParser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		565F4FF6251E29960035B06D /* SwiftyXMLParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 565F4FF5251E29960035B06D /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;
+			productName = SwiftyXMLParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		56DE51EA25176E44003E258C /* TuraTalalo.xcdatamodeld */ = {
