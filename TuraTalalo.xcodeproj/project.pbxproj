@@ -27,6 +27,12 @@
 		5660D76F251E7AFB007DC669 /* PathTextInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */; };
 		5660D78C251F959C007DC669 /* TouristSigns.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5660D78B251F959C007DC669 /* TouristSigns.xcassets */; };
 		5660D794251F966B007DC669 /* Elevate_Hiking.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5660D793251F966B007DC669 /* Elevate_Hiking.xml */; };
+		5660D7A02520C252007DC669 /* MapRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D79F2520C252007DC669 /* MapRenderer.swift */; };
+		5660D7B42520CA13007DC669 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7B32520CA13007DC669 /* PointOfInterest.swift */; };
+		5660D7BC2520CA29007DC669 /* Way.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7BB2520CA29007DC669 /* Way.swift */; };
+		5660D7C12520CA50007DC669 /* BaseTile-VectorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7C02520CA50007DC669 /* BaseTile-VectorTile.swift */; };
+		5660D7C52520D7B0007DC669 /* huntura.map in Resources */ = {isa = PBXBuildFile; fileRef = 5660D798251F96BA007DC669 /* huntura.map */; };
+		5660D7CA252130B4007DC669 /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7C9252130B4007DC669 /* CoreGraphics+Extensions.swift */; };
 		56A23A3E251C9E5B00F43C69 /* ValueTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */; };
 		56DE51E225176E44003E258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E125176E44003E258C /* AppDelegate.swift */; };
 		56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E325176E44003E258C /* SceneDelegate.swift */; };
@@ -77,6 +83,11 @@
 		5660D78B251F959C007DC669 /* TouristSigns.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TouristSigns.xcassets; sourceTree = "<group>"; };
 		5660D793251F966B007DC669 /* Elevate_Hiking.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Elevate_Hiking.xml; sourceTree = "<group>"; };
 		5660D798251F96BA007DC669 /* huntura.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = huntura.map; sourceTree = "<group>"; };
+		5660D79F2520C252007DC669 /* MapRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRenderer.swift; sourceTree = "<group>"; };
+		5660D7B32520CA13007DC669 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		5660D7BB2520CA29007DC669 /* Way.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Way.swift; sourceTree = "<group>"; };
+		5660D7C02520CA50007DC669 /* BaseTile-VectorTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseTile-VectorTile.swift"; sourceTree = "<group>"; };
+		5660D7C9252130B4007DC669 /* CoreGraphics+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extensions.swift"; sourceTree = "<group>"; };
 		56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTypeWrapper.swift; sourceTree = "<group>"; };
 		56DE51DE25176E44003E258C /* TuraTalalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuraTalalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DE51E125176E44003E258C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +138,7 @@
 				5660D798251F96BA007DC669 /* huntura.map */,
 				5660D793251F966B007DC669 /* Elevate_Hiking.xml */,
 				563DF8A9251B6B3D00FC3313 /* Utilities */,
+				5660D7B22520C9F8007DC669 /* Building blocks */,
 				563DF89A251B60A700FC3313 /* Rendering */,
 				563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */,
 				563DF88D251B5AC600FC3313 /* MapFileReader.swift */,
@@ -139,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				565F5010251E494F0035B06D /* Instructions */,
+				5660D79F2520C252007DC669 /* MapRenderer.swift */,
 				565F4FE7251E1FD40035B06D /* RenderingLayer.swift */,
 				565F4FDD251E00AC0035B06D /* RenderingRule.swift */,
 				565F4FD8251DFAE90035B06D /* RenderTheme.swift */,
@@ -153,6 +166,7 @@
 			children = (
 				563DF8AD251B853900FC3313 /* Transformations.swift */,
 				56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */,
+				5660D7C9252130B4007DC669 /* CoreGraphics+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -170,6 +184,16 @@
 				5660D769251E79BB007DC669 /* SymbolInstruction.swift */,
 			);
 			path = Instructions;
+			sourceTree = "<group>";
+		};
+		5660D7B22520C9F8007DC669 /* Building blocks */ = {
+			isa = PBXGroup;
+			children = (
+				5660D7B32520CA13007DC669 /* PointOfInterest.swift */,
+				5660D7BB2520CA29007DC669 /* Way.swift */,
+				5660D7C02520CA50007DC669 /* BaseTile-VectorTile.swift */,
+			);
+			path = "Building blocks";
 			sourceTree = "<group>";
 		};
 		56DE51D525176E44003E258C = {
@@ -336,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5660D7C52520D7B0007DC669 /* huntura.map in Resources */,
 				56DE51F125176E47003E258C /* LaunchScreen.storyboard in Resources */,
 				56DE51EE25176E47003E258C /* Assets.xcassets in Resources */,
 				5660D794251F966B007DC669 /* Elevate_Hiking.xml in Resources */,
@@ -378,14 +403,19 @@
 				5660D76F251E7AFB007DC669 /* PathTextInstruction.swift in Sources */,
 				5660D760251E773E007DC669 /* CaptionInstruction.swift in Sources */,
 				565F4FFC251E2C770035B06D /* XMLTypeCaster.swift in Sources */,
+				5660D7B42520CA13007DC669 /* PointOfInterest.swift in Sources */,
 				565F5009251E48390035B06D /* RenderingInstruction.swift in Sources */,
+				5660D7A02520C252007DC669 /* MapRenderer.swift in Sources */,
 				563DF89C251B60B600FC3313 /* TileKey.swift in Sources */,
 				565F5015251E4A9A0035B06D /* LineInstruction.swift in Sources */,
 				5660D75B251E74DD007DC669 /* LineSymbolInstruction.swift in Sources */,
+				5660D7C12520CA50007DC669 /* BaseTile-VectorTile.swift in Sources */,
+				5660D7CA252130B4007DC669 /* CoreGraphics+Extensions.swift in Sources */,
 				565F4FD9251DFAE90035B06D /* RenderTheme.swift in Sources */,
 				56DE51E225176E44003E258C /* AppDelegate.swift in Sources */,
 				56DE51E425176E44003E258C /* SceneDelegate.swift in Sources */,
 				563DF88E251B5AC600FC3313 /* MapFileReader.swift in Sources */,
+				5660D7BC2520CA29007DC669 /* Way.swift in Sources */,
 				565F4FE3251E03290035B06D /* AreaInstruction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

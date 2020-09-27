@@ -13,17 +13,18 @@ final class Transformation {
     //MARK:- Constants
     static let tileSize: CGFloat = 256
     static let initialResolution: CGFloat = 2 * .pi * 6_378_137 / tileSize
-    static let originalShift: CGFloat = 2 * .pi * 6_378_137 / 2
+    static let originShift: CGFloat = 2 * .pi * 6_378_137 / 2
     //MARK:- LatLon x SphericalMercator
-    class func latLonToMeters(_ lat: CGFloat, _ lon: CGFloat, _ mx: inout CGFloat, _ my: inout CGFloat) {
-        mx = lon * originalShift / 180.0
-        my = log(tan((90 + lat) * .pi / 360.0)) / (.pi / 180.0)
-        my = my * originalShift / 180.0
+    class func latLonToMeters(_ lat: CGFloat, _ lon: CGFloat, _ mPoint: inout CGPoint) {
+        let mx = lon * originShift / 180.0
+        var my = log(tan((90 + lat) * .pi / 360.0)) / (.pi / 180.0)
+        my = my * originShift / 180.0
+        mPoint = CGPoint(x: mx, y: my)
     }
 
     class func metersToLatLon(_ mx: CGFloat, _ my: CGFloat, _ lat: inout CGFloat, _ lon: inout CGFloat) {
-        lon = mx / originalShift * 180
-        lat = my / originalShift * 180
+        lon = mx / originShift * 180
+        lat = my / originShift * 180
         lat = 180.0 / .pi * (2 * atan(exp(lat * .pi / 180.0)) - .pi / 2)
     }
     //MARK:- Zooming related conversions
@@ -31,58 +32,64 @@ final class Transformation {
         initialResolution / pow(2, CGFloat(zoom))
     }
 
-    class func pixelsToMeters(_ px: CGFloat, _ py: CGFloat, _ zoom: UInt32, _ mx: inout CGFloat, _ my: inout CGFloat) {
+    class func pixelsToMeters(_ px: CGFloat, _ py: CGFloat, _ zoom: UInt32, _ mPoint: inout CGPoint) {
         let res = resolution(zoom: zoom)
-        mx = px * res - originalShift
-        my = py * res - originalShift
+        let mx = px * res - originShift
+        let my = py * res - originShift
+        mPoint = CGPoint(x: mx, y: my)
     }
 
-    class func metersToPixels(_ mx: CGFloat, _ my: CGFloat, _ zoom: UInt32, _ px: inout CGFloat, _ py: inout CGFloat) {
+    class func metersToPixels(_ mPoint: CGPoint, _ zoom: UInt32, _ pPoint: inout CGPoint) {
         let res = resolution(zoom: zoom)
-        px = (mx + originalShift) / res
-        py = (my + originalShift) / res
+        let px = (mPoint.x + originShift) / res
+        let py = (mPoint.y + originShift) / res
+        pPoint = CGPoint(x: px, y: py)
     }
     //MARK:- Tile related conversions and calculations
-    class func pixelsToTile(_ px: CGFloat, _ py: CGFloat, _ tx: inout UInt32, _ ty: inout UInt32) {
-        tx = UInt32(ceil(px / CGFloat(tileSize)) - 1)
-        ty = UInt32(ceil(py / CGFloat(tileSize)) - 1)
+    class func pixelsToTile(_ pPoint: CGPoint, _ tx: inout UInt32, _ ty: inout UInt32) {
+        tx = UInt32(ceil(pPoint.x / CGFloat(tileSize)) - 1)
+        ty = UInt32(ceil(pPoint.y / CGFloat(tileSize)) - 1)
     }
 
-    class func tileToPixels(_ tx: UInt32, _ ty: UInt32, _ px: inout CGFloat, _ py: inout CGFloat) {
-        px = CGFloat(tx) * tileSize
-        py = CGFloat(ty) * tileSize
+    class func tileToPixels(_ tx: UInt32, _ ty: UInt32, _ pPoint: inout CGPoint) {
+        let px = CGFloat(tx) * tileSize
+        let py = CGFloat(ty) * tileSize
+        pPoint = CGPoint(x: px, y: py)
     }
 
-    class func metersToTile(_ mx: CGFloat, _ my: CGFloat, _ zoom: UInt32, _ tx: inout UInt32, _ ty: inout UInt32) {
-        var px = CGFloat(), py = CGFloat()
-        metersToPixels(mx, my, zoom, &px, &py)
-        pixelsToTile(px, py, &tx, &ty)
+    class func metersToTile(_ mPoint: CGPoint, _ zoom: UInt32, _ tx: inout UInt32, _ ty: inout UInt32) {
+        var pPoint = CGPoint()
+        metersToPixels(mPoint, zoom, &pPoint)
+        pixelsToTile(pPoint, &tx, &ty)
     }
 
-    class func tileBounds(_ tx: UInt32, _ ty: UInt32, _ zoom: UInt32,
-                          _ minX: inout CGFloat, _ minY: inout CGFloat, _ maxX: inout CGFloat, _ maxY: inout CGFloat,
-                          _ buffer: UInt32) {
+    class func tileBounds(_ tx: UInt32, _ ty: UInt32, _ zoom: UInt32, _ bounds: inout CGRect, _ buffer: UInt32) {
+        var topLeftPoint = CGPoint(), bottomRightPoint = CGPoint()
         pixelsToMeters(CGFloat(tx) * tileSize - CGFloat(buffer), CGFloat(ty) * tileSize - CGFloat(buffer),
-                       zoom, &minX, &minY)
+                       zoom, &topLeftPoint)
         pixelsToMeters(CGFloat(tx + 1) * tileSize + CGFloat(buffer), CGFloat(ty + 1) * tileSize + CGFloat(buffer),
-                       zoom, &maxX, &maxY)
+                       zoom, &bottomRightPoint)
+
+        bounds = CGRect(x: topLeftPoint.x, y: topLeftPoint.y,
+                        width: bottomRightPoint.x - topLeftPoint.x, height: bottomRightPoint.y - topLeftPoint.y)
     }
 
-    class func tileLatLonBounds(_ tx: UInt32, _ ty: UInt32, _ zoom: UInt32,
-                                _ minLat: inout CGFloat, _ minLon: inout CGFloat, _ maxLat: inout CGFloat, _ maxLon: inout CGFloat) {
-        var minX = CGFloat(), minY = CGFloat(), maxX = CGFloat(), maxY = CGFloat()
-        tileBounds(tx, ty, zoom, &minX, &minY, &maxX, &maxY, 0)
-        metersToLatLon(minX, minY, &minLat, &minLon)
-        metersToLatLon(maxX, maxY, &maxLat, &maxLon)
+    class func tileLatLonBounds(_ tx: UInt32, _ ty: UInt32, _ zoom: UInt32, _ latLonBounds: inout CGRect) {
+        var bounds = CGRect(), minLat = CGFloat(), minLon = CGFloat(), maxLat = CGFloat(), maxLon = CGFloat()
+        tileBounds(tx, ty, zoom, &bounds, 0)
+        metersToLatLon(bounds.minX, bounds.minY, &minLat, &minLon)
+        metersToLatLon(bounds.maxX, bounds.maxY, &maxLat, &maxLon)
+        latLonBounds = CGRect(x: minLat, y: minLon,
+                              width: maxLat - minLat, height: maxLon - minLon)
     }
 
     class func tilesWithinBounds(_ minLat: CGFloat, _ minLon: CGFloat, _ maxLat: CGFloat, _ maxLon: CGFloat,
                                  _ zoom: UInt32,
                                  _ txMin: inout UInt32, _ tyMin: inout UInt32, _ txMax: inout UInt32, _ tyMax: inout UInt32) {
-        var minX = CGFloat(), minY = CGFloat(), maxX = CGFloat(), maxY = CGFloat()
-        latLonToMeters(minLat, minLon, &minX, &minY)
-        latLonToMeters(maxLat, maxLon, &maxX, &maxY)
-        metersToTile(minX, minY, zoom, &txMin, &tyMin)
-        metersToTile(maxX, maxY, zoom, &txMax, &tyMax)
+        var minPoint = CGPoint(), maxPoint = CGPoint()
+        latLonToMeters(minLat, minLon, &minPoint)
+        latLonToMeters(maxLat, maxLon, &maxPoint)
+        metersToTile(minPoint, zoom, &txMin, &tyMin)
+        metersToTile(maxPoint, zoom, &txMax, &tyMax)
     }
 }

@@ -15,7 +15,7 @@ final class XMLTypeCaster {
     class func stringToCGColor(string: String?) -> CGColor? {
         guard string != nil else { return nil }
 
-        var str = string! //get a copy
+        var str = string!.lowercased()
         guard colorRegExp.numberOfMatches(in: str, range: NSRange(0..<str.count)) == 1 else {
             return nil
         }
@@ -38,6 +38,8 @@ final class XMLTypeCaster {
 
             let name = pie.name
 
+            let instructionOriginalCount = instructions.count
+
             if name == "area"       { instructions.append(AreaInstruction(from: pie)) }
             if name == "line"       { instructions.append(LineInstruction(from: pie)) }
             if name == "caption"    { instructions.append(CaptionInstruction(from: pie, withContext: &context)) }
@@ -45,6 +47,11 @@ final class XMLTypeCaster {
             if name == "symbol"     { instructions.append(SymbolInstruction(from: pie, withContext: &context)) }
             if name == "pathText"   { instructions.append(PathTextInstruction(from: pie)) }
             if name == "lineSymbol" { instructions.append(LineSymbolInstruction(from: pie)) }
+
+            if instructionOriginalCount == instructions.count {
+                print("No instruction was added!")
+                continue
+            }
 
             instructions.last!.zOrder = context.order
             context.order += 1
@@ -54,7 +61,7 @@ final class XMLTypeCaster {
         let zoomMinString = xmlElement.attributes["zoom-min"]
         let zoomMaxString = xmlElement.attributes["zoom-max"]
 
-        let rule = RenderingRule(category: xmlElement.attributes["cat"]!,
+        let rule = RenderingRule(category: xmlElement.attributes["cat"],
                                  keys: xmlElement.attributes["k"]!.components(separatedBy: "|"),
                                  values: xmlElement.attributes["v"]!.components(separatedBy: "|"),
                                  element: RenderingRule.Element(rawValue: xmlElement.attributes["e"]!)!,
@@ -91,7 +98,8 @@ final class XMLTypeCaster {
     class func stringToDashArray(dashArrayString: String?) -> [CGFloat]? {
         guard dashArrayString != nil else { return nil }
 
-        let copyString = dashArrayString!
+        var copyString = dashArrayString!
+        copyString.removeAll { $0 == " " }
         let dashArray = copyString.components(separatedBy: ",")
             .map { CGFloat(Double($0)!) }
 

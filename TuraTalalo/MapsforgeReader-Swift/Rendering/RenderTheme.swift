@@ -38,19 +38,18 @@ final class RenderTheme : NSObject {
         var themeParseContext = ThemeParseContext(instructions: [:],
                                                   rootDirectory: fileUrl.deletingLastPathComponent(),
                                                   order: 0)
-        let root = renderThemeXml.first
+        let root = renderThemeXml.all![0].childElements[0]
         if root.name != "rendertheme" { fatalError("Rendertheme element not found!") }
 
         self.version = root.attributes["version"] ?? self.version
         self.mapBackground = XMLTypeCaster.stringToCGColor(string: root.attributes["map-background"]) ?? self.mapBackground
         self.mapOuterBackground = XMLTypeCaster.stringToCGColor(string: root.attributes["map-background-outside"]) ?? self.mapOuterBackground
 
-        let styleMenu = root["stylemenu"]
-        if styleMenu.error == nil {
+        if let styleMenu = root.attributes["stylemenu"] {
             //my map has no stylemenu, so TODO
         }
 
-        guard let ruleElements = root.all?.filter({ $0.name == "rule" }) else { return }
+        let ruleElements = root.childElements.filter({ $0.name == "rule" })
         for ruleElement in ruleElements {
             guard let renderingRule = XMLTypeCaster.xmlElementToRenderingRule(xmlElement: ruleElement, context: &themeParseContext) else {
                 return

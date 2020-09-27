@@ -100,11 +100,16 @@ final class MapFileReader {
     }
 
     func readTagList(for tagType: TagType) {
-        var tagArray = self[keyPath: tagType.correspondingTagListArrayKeyPath]
+        var tagArray = [String]()
         let tagCount = mapFileInputSerializer.readUInt16()
 
         for _ in 0..<tagCount {
             tagArray.append(try! mapFileInputSerializer.readUTF8EncodedString())
+        }
+
+        switch tagType {
+            case .pointsOfInterest: self.pointOfInterestTags = tagArray
+            case .ways: self.wayTags = tagArray
         }
     }
 
@@ -126,7 +131,7 @@ final class MapFileReader {
             mapFileInfo.maximumZoomLevel = max(mapFileInfo.maximumZoomLevel, sfi.maximumZoomLevel)
 
             var tileYMin = UInt32(), tileYMax = UInt32()
-            Transformation.tilesWithinBounds(mapFileInfo.minimumLongitude, mapFileInfo.minimumLongitude,
+            Transformation.tilesWithinBounds(mapFileInfo.minimumLatitude, mapFileInfo.minimumLongitude,
                                              mapFileInfo.maximumLatitude, mapFileInfo.maximumLongitude,
                                              UInt32(sfi.baseZoomLevel),
                                              &sfi.tileXMin, &tileYMin, &sfi.tileXMax, &tileYMax)
@@ -160,10 +165,7 @@ final class MapFileReader {
 
     func readTile(keyed key: TileKey, offset: Int) -> VectorTile {
         var queryBox = CGRect()
-        Transformation.tileBounds(key.x, key.y, UInt32(key.z),
-                                  &queryBox.origin.x, &queryBox.origin.y,
-                                  &queryBox.size.width, &queryBox.size.height,
-                                  0)
+        Transformation.tileBounds(key.x, key.y, UInt32(key.z), &queryBox, 0)
 
         let gtk = key.toGoogle()
         var zoom = min(mapFileInfo.maximumZoomLevel, gtk.z)
@@ -204,8 +206,8 @@ final class MapFileReader {
 
                 baseTileMinX = min(baseTileMinX, blockMinX)
                 baseTileMinY = min(baseTileMinY, blockMinY)
-                baseTileMaxX = min(baseTileMaxX, blockMaxX)
-                baseTileMaxY = min(baseTileMaxY, blockMaxY)
+                baseTileMaxX = max(baseTileMaxX, blockMaxX)
+                baseTileMaxY = max(baseTileMaxY, blockMaxY)
             }
         }
 
@@ -220,10 +222,7 @@ final class MapFileReader {
 
                 var boundingBox = CGRect()
                 let baseTileKey = TileKey(x: btx, y: bty, z: sfi.baseZoomLevel, isTopLeft: true)
-                Transformation.tileBounds(baseTileKey.x, baseTileKey.y, UInt32(baseTileKey.z),
-                                          &boundingBox.origin.x, &boundingBox.origin.y,
-                                          &boundingBox.size.width, &boundingBox.size.height,
-                                          0)
+                Transformation.tileBounds(baseTileKey.x, baseTileKey.y, UInt32(baseTileKey.z), &boundingBox, 0)
 
                 let ignoreWays = boundingBox.intersects(queryBox)
 
@@ -262,8 +261,7 @@ final class MapFileReader {
                     baseTile.isSea = true
 
                     var lBox = CGRect()
-                    Transformation.tileLatLonBounds(baseTileKey.x, baseTileKey.y, UInt32(baseTileKey.z),
-                                                    &lBox.origin.x, &lBox.origin.y, &lBox.size.width, &lBox.size.height)
+                    Transformation.tileLatLonBounds(baseTileKey.x, baseTileKey.y, UInt32(baseTileKey.z), &lBox)
 
                     var sea = Way()
                     sea.tags["natural"] = "sea"
@@ -315,15 +313,14 @@ final class MapFileReader {
         guard let firstWayOffset = try? mapFileInputSerializer.readVarUInt64() else { fatalError("Could not read first way offset!") }
         let firstWayPosition = mapFileInputSerializer.currentPointerPosition() + firstWayOffset
 
-        var minLat = CGFloat(), minLon = CGFloat(), maxLat = CGFloat(), maxLon = CGFloat()
-        Transformation.tileLatLonBounds(data.x, (1 << data.z) - data.y, data.z,
-                                        &minLat, &minLon, &maxLat, &maxLon)
+        var latLonBounds = CGRect()
+        Transformation.tileLatLonBounds(data.x, (1 << data.z) - data.y, data.z, &latLonBounds)
 
         //POIs
         for i in 0..<zoomLevelCount {
             for _ in 0..<Int(numberOfPoisPerlevel[i]) {
-                let poi = readPointOfInterest(originalLatitude: maxLat,
-                                              originalLongitude: minLon)
+                let poi = readPointOfInterest(originalLatitude: latLonBounds.maxX,
+                                              originalLongitude: latLonBounds.minY)
                 data.pointsOfInterestPerLevel[i].append(poi)
             }
         }
@@ -332,7 +329,7 @@ final class MapFileReader {
         mapFileInputSerializer.movePointer(toFileOffset: firstWayPosition)
         for i in 0..<zoomLevelCount {
             for _ in 0..<numberOfWaysPerLevel[i] {
-                let ways = readWays(originalLatitude: maxLat, originalLongitude: minLon)
+                let ways = readWays(originalLatitude: latLonBounds.maxX, originalLongitude: latLonBounds.minY)
                 data.waysPerLevel[i].append(contentsOf: ways)
             }
         }
@@ -533,74 +530,11 @@ extension MapFileReader {
     enum TagType {
         case ways
         case pointsOfInterest
-
-        var correspondingTagListArrayKeyPath: KeyPath<MapFileReader, [String]> {
-            switch self {
-                case .ways: return \.wayTags
-                case .pointsOfInterest: return \.pointOfInterestTags
-            }
-        }
     }
 }
 
 //MARK:- POI, Way, BaseTile, VectorTile, TileData
 extension MapFileReader {
-    struct PointOfInterest : Hashable {
-        var id = UUID()
-        var latitude: CGFloat = CGFloat()
-        var longitude: CGFloat = CGFloat()
-        var tags: [String : String] = [String : String]()
-
-        static func ==(lhs: PointOfInterest, rhs: PointOfInterest) -> Bool {
-            if lhs.latitude != rhs.latitude { return false }
-            if lhs.longitude != rhs.longitude { return false }
-
-            for tag in Set(lhs.tags.keys).union(Set(rhs.tags.keys)) {
-                if lhs.tags[tag] != rhs.tags[tag] { return false }
-            }
-
-            return true
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-    }
-
-    struct Way : Hashable {
-        var id = UUID()
-        var coordinates: [[CGPoint]] = []
-        var tags: Dictionary<String, String> = [:]
-        var labelPosition: CGPoint? = nil
-        var layer: Int8 = Int8()
-        var isClosed: Bool = false
-
-        static func ==(lhs: Way, rhs: Way) -> Bool {
-            if lhs.coordinates != rhs.coordinates { return false }
-            if lhs.tags != rhs.tags { return false }
-            if lhs.labelPosition != rhs.labelPosition { return false }
-            if lhs.layer != rhs.layer { return false }
-            if lhs.isClosed != rhs.isClosed { return false }
-
-            return true
-        }
-
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-    }
-
-    struct BaseTile {
-        var key: TileKey
-        var isSea: Bool = false
-        var pointsOfInterest: [PointOfInterest]
-        var ways: [Way]
-    }
-
-    struct VectorTile {
-        var baseTiles: [BaseTile]
-    }
-
     struct TileData : Hashable {
         var x: UInt32 = UInt32()
         var y: UInt32 = UInt32()
