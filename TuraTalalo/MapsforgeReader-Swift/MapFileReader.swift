@@ -243,7 +243,7 @@ final class MapFileReader {
                 let cacheKey = ValueTypeWrapper(CacheKey(x: btx, y: bty, z: sfi.baseZoomLevel, mapFileReader: self))
 
                 if let wrappedTileData = tileCache.object(forKey: cacheKey) {
-                    tileData = wrappedTileData.value
+                    tileData = wrappedTileData.wrappedValue
                 } else {
                     tileData = TileData(x: btx, y: bty, z: UInt32(sfi.baseZoomLevel), isSea: isSeaTile,
                                         pointsOfInterestPerLevel: [], waysPerLevel: [])
@@ -518,7 +518,11 @@ final class MapFileReader {
 }
 
 //MARK:- Equatable conformance
-extension MapFileReader : Equatable {
+extension MapFileReader : Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+
     static func ==(lhs: MapFileReader, rhs: MapFileReader) -> Bool {
         return lhs.id == rhs.id
     }
@@ -541,7 +545,8 @@ extension MapFileReader {
 
 //MARK:- POI, Way, BaseTile, VectorTile, TileData
 extension MapFileReader {
-    struct PointOfInterest : Equatable {
+    struct PointOfInterest : Hashable {
+        var id = UUID()
         var latitude: CGFloat = CGFloat()
         var longitude: CGFloat = CGFloat()
         var tags: [String : String] = [String : String]()
@@ -556,9 +561,14 @@ extension MapFileReader {
 
             return true
         }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
 
-    struct Way : Equatable {
+    struct Way : Hashable {
+        var id = UUID()
         var coordinates: [[CGPoint]] = []
         var tags: Dictionary<String, String> = [:]
         var labelPosition: CGPoint? = nil
@@ -574,6 +584,10 @@ extension MapFileReader {
 
             return true
         }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
 
     struct BaseTile {
@@ -587,7 +601,7 @@ extension MapFileReader {
         var baseTiles: [BaseTile]
     }
 
-    struct TileData : Equatable {
+    struct TileData : Hashable {
         var x: UInt32 = UInt32()
         var y: UInt32 = UInt32()
         var z: UInt32 = UInt32()
@@ -596,7 +610,7 @@ extension MapFileReader {
         var waysPerLevel: [[Way]] = []
     }
 
-    struct CacheKey : Equatable {
+    struct CacheKey : Hashable {
         var x: UInt32
         var y: UInt32
         var z: UInt8

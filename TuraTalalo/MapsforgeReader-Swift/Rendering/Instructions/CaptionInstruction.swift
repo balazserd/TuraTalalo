@@ -12,7 +12,7 @@ import UIKit
 
 final class CaptionInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element, withContext context: inout RenderTheme.ThemeParseContext) {
-        self.type = .caption
+        super.init(type: .caption)
 
         let priorityString = xmlNode.attributes["priority"]
         let displayString = xmlNode.attributes["display"]

@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 import SwiftyXMLParser
 
-class RenderingInstruction {
+class RenderingInstruction : Hashable {
     var type: InstructionType
 
     init(type: InstructionType) {
@@ -23,7 +23,7 @@ class RenderingInstruction {
     }
 
     var category: String? = nil
-    var source: URL? = nil
+    var sourceFileName: String? = nil
     var key: String? = nil
     var id: String? = nil
 
@@ -62,6 +62,14 @@ class RenderingInstruction {
     var rotate: Bool? = nil
     var `repeat`: Bool? = nil
     var scaleRadius: Bool? = nil
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(key!)
+    }
+
+    static func ==(lhs: RenderingInstruction, rhs: RenderingInstruction) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 //MARK:- Enumerations

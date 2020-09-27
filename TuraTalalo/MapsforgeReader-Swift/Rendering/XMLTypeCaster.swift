@@ -15,7 +15,7 @@ final class XMLTypeCaster {
     class func stringToCGColor(string: String?) -> CGColor? {
         guard string != nil else { return nil }
 
-        var str = string! //get a mutable copy
+        var str = string! //get a copy
         guard colorRegExp.numberOfMatches(in: str, range: NSRange(0..<str.count)) == 1 else {
             return nil
         }
@@ -50,13 +50,17 @@ final class XMLTypeCaster {
             context.order += 1
         }
 
+        let closedString = xmlElement.attributes["closed"]
+        let zoomMinString = xmlElement.attributes["zoom-min"]
+        let zoomMaxString = xmlElement.attributes["zoom-max"]
+
         let rule = RenderingRule(category: xmlElement.attributes["cat"]!,
                                  keys: xmlElement.attributes["k"]!.components(separatedBy: "|"),
                                  values: xmlElement.attributes["v"]!.components(separatedBy: "|"),
                                  element: RenderingRule.Element(rawValue: xmlElement.attributes["e"]!)!,
-                                 closed: RenderingRule.Closed(rawValue: xmlElement.attributes["closed"]!)!,
-                                 minimumZoomLevel: UInt8(xmlElement.attributes["zoom-min"]!)!,
-                                 maximumZoomLevel: UInt8(xmlElement.attributes["zoom-max"]!)!,
+                                 closed: closedString != nil ? RenderingRule.Closed(rawValue: closedString!)! : .any,
+                                 minimumZoomLevel: zoomMinString != nil ? UInt8(zoomMinString!)! : 0,
+                                 maximumZoomLevel: zoomMaxString != nil ? UInt8(zoomMaxString!)! : 127,
                                  children: nil,
                                  parent: nil,
                                  instructions: instructions)
@@ -74,10 +78,14 @@ final class XMLTypeCaster {
         return rule
     }
 
-    class func stringToFileURL(urlString: String?) -> URL? {
-        guard urlString != nil else { return nil }
+    class func stringToAssetCatalogFileName(assetNameString: String?) -> String? {
+        guard assetNameString != nil else { return nil }
+        guard assetNameString!.starts(with: "file:") else {
+            fatalError("URL string did not start with the conventional 'file:' prefix!")
+        }
 
-        return URL(fileURLWithPath: urlString!)
+        let url = URL(fileURLWithPath: assetNameString!)
+        return url.lastPathComponent
     }
 
     class func stringToDashArray(dashArrayString: String?) -> [CGFloat]? {

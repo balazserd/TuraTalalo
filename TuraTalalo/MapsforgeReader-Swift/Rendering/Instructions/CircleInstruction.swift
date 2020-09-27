@@ -12,7 +12,7 @@ import UIKit
 
 final class CircleInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element) {
-        self.type = .circle
+        super.init(type: .circle)
 
         let radiusString = xmlNode.attributes["radius"]
         let scaleRadiusString = xmlNode.attributes["scale-radius"]

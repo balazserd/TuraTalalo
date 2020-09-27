@@ -12,7 +12,7 @@ import UIKit
 
 final class LineSymbolInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element) {
-        self.type = .lineSymbol
+        super.init(type: .lineSymbol)
 
         let displayString = xmlNode.attributes["display"]
         let dyString = xmlNode.attributes["dy"]
@@ -31,7 +31,7 @@ final class LineSymbolInstruction : RenderingInstruction {
         self.category = xmlNode.attributes["cat"]
         self.display = displayString != nil ? Display(rawValue: displayString!)! : .ifspace
         self.dy = dyString != nil ? CGFloat(Double(dyString!)!) : 0
-        self.source = XMLTypeCaster.stringToFileURL(urlString: xmlNode.attributes["src"])
+        self.sourceFileName = XMLTypeCaster.stringToAssetCatalogFileName(assetNameString: xmlNode.attributes["src"])
         self.symbolWidth = symbolWidthString != nil ? CGFloat(Double(symbolWidthString!)!) : nil
         self.symbolHeight = symbolHeightString != nil ? CGFloat(Double(symbolHeightString!)!) : nil
         self.symbolPercent = symbolPercentString != nil ? CGFloat(Double(symbolPercentString!)!) : nil

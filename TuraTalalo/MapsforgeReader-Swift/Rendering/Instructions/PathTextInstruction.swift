@@ -12,7 +12,7 @@ import UIKit
 
 final class PathTextInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element) {
-        self.type = .pathText
+        super.init(type: .pathText)
 
         let priorityString = xmlNode.attributes["priority"]
         let displayString = xmlNode.attributes["display"]

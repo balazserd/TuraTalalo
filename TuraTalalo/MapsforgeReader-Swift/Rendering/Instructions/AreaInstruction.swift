@@ -12,7 +12,7 @@ import UIKit
 
 final class AreaInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element) {
-        self.type = .area
+        super.init(type: .area)
         
         let symbolWidthString = xmlNode.attributes["symbol-width"]
         let symbolHeightString = xmlNode.attributes["symbol-height"]
@@ -21,7 +21,7 @@ final class AreaInstruction : RenderingInstruction {
         let scaleString = xmlNode.attributes["scale"]
         let strokeWidthString = xmlNode.attributes["stroke-width"]
 
-        self.source = XMLTypeCaster.stringToFileURL(urlString: xmlNode.attributes["src"])
+        self.sourceFileName = XMLTypeCaster.stringToAssetCatalogFileName(assetNameString: xmlNode.attributes["src"])
         self.symbolWidth = symbolWidthString != nil ? CGFloat(Double(symbolWidthString!)!) : nil
         self.symbolHeight = symbolHeightString != nil ? CGFloat(Double(symbolHeightString!)!) : nil
         self.symbolPercent = symbolPercentString != nil ? CGFloat(Double(symbolPercentString!)!) : nil

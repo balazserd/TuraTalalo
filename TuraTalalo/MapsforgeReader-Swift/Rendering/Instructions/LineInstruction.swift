@@ -12,7 +12,7 @@ import UIKit
 
 final class LineInstruction : RenderingInstruction {
     init(from xmlNode: XML.Element) {
-        self.type = .line
+        super.init(type: .line)
 
         let symbolWidthString = xmlNode.attributes["symbol-width"]
         let symbolHeightString = xmlNode.attributes["symbol-height"]
@@ -27,7 +27,7 @@ final class LineInstruction : RenderingInstruction {
         let strokeLineJoinString = xmlNode.attributes["stroke-linejoin"]
 
         self.category = xmlNode.attributes["cat"]
-        self.source = XMLTypeCaster.stringToFileURL(urlString: xmlNode.attributes["src"])
+        self.sourceFileName = XMLTypeCaster.stringToAssetCatalogFileName(assetNameString: xmlNode.attributes["src"])
         self.symbolWidth = symbolWidthString != nil ? CGFloat(Double(symbolWidthString!)!) : nil
         self.symbolHeight = symbolHeightString != nil ? CGFloat(Double(symbolHeightString!)!) : nil
         self.symbolPercent = symbolPercentString != nil ? CGFloat(Double(symbolPercentString!)!) : nil
