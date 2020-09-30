@@ -42,5 +42,6 @@ final class LineSymbolInstruction : RenderingInstruction {
         self.repeat = repeatString != nil ? Bool(repeatString!) : false
         self.repeatGap = repeatGapString != nil ? CGFloat(Double(repeatGapString!)!) : 200
         self.repeatStart = repeatStartString != nil ? CGFloat(Double(repeatStartString!)!) : 30
-        self.rotate = rotateString != nil ? Bool(rotateString!) : true    }
+        self.rotate = rotateString != nil ? Bool(rotateString!) : true
+    }
 }
