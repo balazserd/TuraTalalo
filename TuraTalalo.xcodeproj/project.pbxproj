@@ -12,8 +12,6 @@
 		563DF893251B5B2B00FC3313 /* MapFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF892251B5B2B00FC3313 /* MapFileInfo.swift */; };
 		563DF89C251B60B600FC3313 /* TileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF89B251B60B600FC3313 /* TileKey.swift */; };
 		563DF8AE251B853900FC3313 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF8AD251B853900FC3313 /* Transformations.swift */; };
-		5658BECB25227E410097EDBD /* tuhu.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5658BECA25227E410097EDBD /* tuhu.xml */; };
-		5658BECF25227E6C0097EDBD /* HungarianTouristMap.map in Resources */ = {isa = PBXBuildFile; fileRef = 5658BEC925227E270097EDBD /* HungarianTouristMap.map */; };
 		565F4FD9251DFAE90035B06D /* RenderTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FD8251DFAE90035B06D /* RenderTheme.swift */; };
 		565F4FDE251E00AC0035B06D /* RenderingRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FDD251E00AC0035B06D /* RenderingRule.swift */; };
 		565F4FE3251E03290035B06D /* AreaInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565F4FE2251E03290035B06D /* AreaInstruction.swift */; };
@@ -28,12 +26,10 @@
 		5660D76A251E79BB007DC669 /* SymbolInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D769251E79BB007DC669 /* SymbolInstruction.swift */; };
 		5660D76F251E7AFB007DC669 /* PathTextInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */; };
 		5660D78C251F959C007DC669 /* TouristSigns.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5660D78B251F959C007DC669 /* TouristSigns.xcassets */; };
-		5660D794251F966B007DC669 /* Elevate_Hiking.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5660D793251F966B007DC669 /* Elevate_Hiking.xml */; };
 		5660D7A02520C252007DC669 /* MapRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D79F2520C252007DC669 /* MapRenderer.swift */; };
 		5660D7B42520CA13007DC669 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7B32520CA13007DC669 /* PointOfInterest.swift */; };
 		5660D7BC2520CA29007DC669 /* Way.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7BB2520CA29007DC669 /* Way.swift */; };
 		5660D7C12520CA50007DC669 /* BaseTile-VectorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7C02520CA50007DC669 /* BaseTile-VectorTile.swift */; };
-		5660D7C52520D7B0007DC669 /* huntura.map in Resources */ = {isa = PBXBuildFile; fileRef = 5660D798251F96BA007DC669 /* huntura.map */; };
 		5660D7CA252130B4007DC669 /* CoreGraphics+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5660D7C9252130B4007DC669 /* CoreGraphics+Extensions.swift */; };
 		56A23A3E251C9E5B00F43C69 /* ValueTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A23A3D251C9E5B00F43C69 /* ValueTypeWrapper.swift */; };
 		56DE51E225176E44003E258C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DE51E125176E44003E258C /* AppDelegate.swift */; };
@@ -70,8 +66,6 @@
 		563DF892251B5B2B00FC3313 /* MapFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileInfo.swift; sourceTree = "<group>"; };
 		563DF89B251B60B600FC3313 /* TileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileKey.swift; sourceTree = "<group>"; };
 		563DF8AD251B853900FC3313 /* Transformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
-		5658BEC925227E270097EDBD /* HungarianTouristMap.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = HungarianTouristMap.map; sourceTree = "<group>"; };
-		5658BECA25227E410097EDBD /* tuhu.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tuhu.xml; sourceTree = "<group>"; };
 		565F4FD8251DFAE90035B06D /* RenderTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderTheme.swift; sourceTree = "<group>"; };
 		565F4FDD251E00AC0035B06D /* RenderingRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingRule.swift; sourceTree = "<group>"; };
 		565F4FE2251E03290035B06D /* AreaInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaInstruction.swift; sourceTree = "<group>"; };
@@ -85,8 +79,6 @@
 		5660D769251E79BB007DC669 /* SymbolInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInstruction.swift; sourceTree = "<group>"; };
 		5660D76E251E7AFB007DC669 /* PathTextInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathTextInstruction.swift; sourceTree = "<group>"; };
 		5660D78B251F959C007DC669 /* TouristSigns.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TouristSigns.xcassets; sourceTree = "<group>"; };
-		5660D793251F966B007DC669 /* Elevate_Hiking.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Elevate_Hiking.xml; sourceTree = "<group>"; };
-		5660D798251F96BA007DC669 /* huntura.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = huntura.map; sourceTree = "<group>"; };
 		5660D79F2520C252007DC669 /* MapRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRenderer.swift; sourceTree = "<group>"; };
 		5660D7B32520CA13007DC669 /* PointOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		5660D7BB2520CA29007DC669 /* Way.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Way.swift; sourceTree = "<group>"; };
@@ -139,10 +131,6 @@
 		563DF87F251A4CFD00FC3313 /* MapsforgeReader-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				5660D798251F96BA007DC669 /* huntura.map */,
-				5658BEC925227E270097EDBD /* HungarianTouristMap.map */,
-				5660D793251F966B007DC669 /* Elevate_Hiking.xml */,
-				5658BECA25227E410097EDBD /* tuhu.xml */,
 				563DF8A9251B6B3D00FC3313 /* Utilities */,
 				5660D7B22520C9F8007DC669 /* Building blocks */,
 				563DF89A251B60A700FC3313 /* Rendering */,
@@ -367,14 +355,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5658BECF25227E6C0097EDBD /* HungarianTouristMap.map in Resources */,
-				5660D7C52520D7B0007DC669 /* huntura.map in Resources */,
 				56DE51F125176E47003E258C /* LaunchScreen.storyboard in Resources */,
 				56DE51EE25176E47003E258C /* Assets.xcassets in Resources */,
-				5660D794251F966B007DC669 /* Elevate_Hiking.xml in Resources */,
 				56DE51E925176E44003E258C /* Main.storyboard in Resources */,
 				5660D78C251F959C007DC669 /* TouristSigns.xcassets in Resources */,
-				5658BECB25227E410097EDBD /* tuhu.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
