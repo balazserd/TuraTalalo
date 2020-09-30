@@ -24,6 +24,7 @@ final class MapFileReader {
     let id = UUID()
 
     var mapFileInfo = MapFileInfo()
+    var fileHeaderSize = UInt32()
     var debugInformationIsPresent: Bool = false
     var pointOfInterestTags = [String]()
     var wayTags = [String]()
@@ -45,12 +46,15 @@ final class MapFileReader {
 
     func readHeader() {
         //https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md#file-header
-        mapFileInputSerializer.readAndDiscard(numberOfBytes: 20) //Magic bytes
-        _ = mapFileInputSerializer.readUInt32() //header size
+        mapFileInputSerializer.skip(numberOfBytes: 20) //Magic bytes
+        fileHeaderSize = mapFileInputSerializer.readUInt32() //header size
         readMapInfo()
         readTagList(for: .pointsOfInterest)
         readTagList(for: .ways)
         readSubFileInfo()
+        if mapFileInputSerializer.currentPointerPosition() != fileHeaderSize + 20 + 4 {
+            fatalError("Did not read all the header bytes!")
+        }
     }
 
     func readMapInfo() {
@@ -148,7 +152,7 @@ final class MapFileReader {
             mapFileInputSerializer.movePointer(toFileOffset: subFileInfos[i].offset)
 
             if debugInformationIsPresent {
-                mapFileInputSerializer.readAndDiscard(numberOfBytes: 16)
+                mapFileInputSerializer.skip(numberOfBytes: 16)
             }
 
             let rows = subFileInfos[i].tileYMax - subFileInfos[i].tileYMin + 1
@@ -167,7 +171,8 @@ final class MapFileReader {
         var queryBox = CGRect()
         Transformation.tileBounds(key.x, key.y, UInt32(key.z), &queryBox, 0)
 
-        let gtk = key.toGoogle()
+//        let gtk = key.toGoogle()
+        let gtk = key
         var zoom = min(mapFileInfo.maximumZoomLevel, gtk.z)
         zoom = max(mapFileInfo.minimumZoomLevel, zoom)
 
@@ -185,13 +190,13 @@ final class MapFileReader {
                 var blockMinX = UInt32(), blockMinY = UInt32(), blockMaxX = UInt32(), blockMaxY = UInt32()
 
                 if gtk.z < sfi.baseZoomLevel {
-                    let zoomDiff = Int8(bitPattern: sfi.baseZoomLevel) - Int8(bitPattern: gtk.z)
+                    let zoomDiff = Int8(sfi.baseZoomLevel) - Int8(gtk.z)
                     blockMinX = tx << zoomDiff
                     blockMinY = ty << zoomDiff
                     blockMaxX = blockMinX + (1 << zoomDiff) - 1 //this tile has several subtiles.
                     blockMaxY = blockMinY + (1 << zoomDiff) - 1 //this tile has several subtiles.
                 } else if gtk.z > sfi.baseZoomLevel {
-                    let zoomDiff = Int8(bitPattern: gtk.z) - Int8(bitPattern: sfi.baseZoomLevel)
+                    let zoomDiff = Int8(gtk.z) - Int8(sfi.baseZoomLevel)
                     blockMinX = tx >> zoomDiff
                     blockMinY = ty >> zoomDiff
                     blockMaxX = blockMinX //this tile is in one parent tile.
@@ -288,10 +293,10 @@ final class MapFileReader {
     func readTileData(subFileInfo sfi: SubFileInfo, offset: Int64, data: inout TileData) {
         // https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md#tile-header
 
-        mapFileInputSerializer.movePointer(toFileOffset: sfi.offset + UInt64(bitPattern: offset))
+        mapFileInputSerializer.movePointer(toFileOffset: sfi.offset + UInt64(offset))
         if debugInformationIsPresent {
             //Tile signature
-            mapFileInputSerializer.readAndDiscard(numberOfBytes: 32)
+            mapFileInputSerializer.skip(numberOfBytes: 32)
         }
 
         let zoomLevelCount = Int(sfi.maximumZoomLevel - sfi.minimumZoomLevel + 1)
@@ -302,15 +307,15 @@ final class MapFileReader {
         var totalPois: UInt64 = 0, totalWays: UInt64 = 0
 
         for _ in 0..<zoomLevelCount {
-            guard let poiCount = try? mapFileInputSerializer.readVarUInt64() else { fatalError("Could not read POI count!") }
-            guard let wayCount = try? mapFileInputSerializer.readVarUInt64() else { fatalError("Could not read Way count!") }
+            let poiCount = try! mapFileInputSerializer.readVarUInt64()
+            let wayCount = try! mapFileInputSerializer.readVarUInt64()
             totalPois += poiCount
             totalWays += wayCount
             numberOfPoisPerlevel.append(poiCount)
             numberOfWaysPerLevel.append(wayCount)
         }
 
-        guard let firstWayOffset = try? mapFileInputSerializer.readVarUInt64() else { fatalError("Could not read first way offset!") }
+        let firstWayOffset = try! mapFileInputSerializer.readVarUInt64()
         let firstWayPosition = mapFileInputSerializer.currentPointerPosition() + firstWayOffset
 
         var latLonBounds = CGRect()
@@ -328,9 +333,10 @@ final class MapFileReader {
         //Ways
         mapFileInputSerializer.movePointer(toFileOffset: firstWayPosition)
         for i in 0..<zoomLevelCount {
-            for _ in 0..<numberOfWaysPerLevel[i] {
+            for j in 0..<numberOfWaysPerLevel[i] {
                 let ways = readWays(originalLatitude: latLonBounds.maxX, originalLongitude: latLonBounds.minY)
                 data.waysPerLevel[i].append(contentsOf: ways)
+                print(j)
             }
         }
     }
@@ -339,7 +345,7 @@ final class MapFileReader {
         // https://github.com/mapsforge/mapsforge/blob/master/docs/Specification-Binary-Map-File.md#poi-data
 
         if debugInformationIsPresent {
-            mapFileInputSerializer.readAndDiscard(numberOfBytes: 32) //POI signature
+            mapFileInputSerializer.skip(numberOfBytes: 32) //POI signature
         }
 
         let latDiff = CGFloat(integerLiteral: Int(mapFileInputSerializer.readVarInt64()) / 1_000_000)
@@ -385,10 +391,13 @@ final class MapFileReader {
         var ways = [Way]()
 
         if debugInformationIsPresent {
-            mapFileInputSerializer.readAndDiscard(numberOfBytes: 32) //Way signature
+            mapFileInputSerializer.skip(numberOfBytes: 32) //Way signature
         }
 
-        _ = try! mapFileInputSerializer.readVarUInt64() //way data size
+        let dataSize = try! mapFileInputSerializer.readVarUInt64() //way data size
+        let startingPointerPosition = mapFileInputSerializer.currentPointerPosition()
+
+        print("way data size: \(dataSize) bytes")
         _ = mapFileInputSerializer.readUInt16() //subTile bitmap
         let specialByte = mapFileInputSerializer.readUInt8()
         let layer = Int8((specialByte & 0xf0) >> 4) - 5
@@ -399,6 +408,7 @@ final class MapFileReader {
             let tagId = try! mapFileInputSerializer.readVarUInt64()
 
             var tag = String(), value = String()
+            print(wayTags[Int(tagId)])
             Self.decodeKeyValue(codedKeyValue: wayTags[Int(tagId)], key: &tag, value: &value)
 
             tags[tag] = value
@@ -460,6 +470,10 @@ final class MapFileReader {
             ways.append(way)
         }
 
+        guard startingPointerPosition + dataSize == mapFileInputSerializer.currentPointerPosition() else {
+            fatalError("Did not read all bytes of the Way or read more bytes than needed for this Way!")
+        }
+
         return ways
     }
 
@@ -471,7 +485,7 @@ final class MapFileReader {
         coordList.append(CGPoint(x: lat, y: lon))
 
         var prevLatDelta = CGFloat(0), prevLonDelta = CGFloat(0)
-        for _ in 0..<nodeCount {
+        for _ in 1..<nodeCount {
             let latDelta = prevLatDelta + CGFloat(mapFileInputSerializer.readVarInt64()) / 1_000_000
             let lonDelta = prevLonDelta + CGFloat(mapFileInputSerializer.readVarInt64()) / 1_000_000
 
@@ -494,7 +508,7 @@ final class MapFileReader {
         var coordList = [CGPoint]()
         coordList.append(CGPoint(x: lat, y: lon))
 
-        for _ in 0..<nodeCount {
+        for _ in 1..<nodeCount {
             lat += CGFloat(mapFileInputSerializer.readVarInt64()) / 1_000_000
             lon += CGFloat(mapFileInputSerializer.readVarInt64()) / 1_000_000
 

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
                                                                    withExtension: "map")!)
         mapFileReader.open()
 
-        let key = TileKey(x: 1, y: 0, z: 13, isTopLeft: false)
+        let key = TileKey(x: 565, y: 355, z: 10, isTopLeft: false)
         let tile = mapFileReader.readTile(keyed: key, offset: 1)
 
         let renderTheme = RenderTheme(withFileUrl: Bundle.main.url(forResource: "Elevate_Hiking",
