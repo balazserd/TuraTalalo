@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5637B791252A1B2700255B6D /* Elevate_Hiking.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5637B790252A1B2700255B6D /* Elevate_Hiking.xml */; };
+		5637B795252A1B3F00255B6D /* huntura.map in Resources */ = {isa = PBXBuildFile; fileRef = 5637B78F252A1B1A00255B6D /* huntura.map */; };
 		563DF881251A50DC00FC3313 /* MapFileInputSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */; };
 		563DF88E251B5AC600FC3313 /* MapFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF88D251B5AC600FC3313 /* MapFileReader.swift */; };
 		563DF893251B5B2B00FC3313 /* MapFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563DF892251B5B2B00FC3313 /* MapFileInfo.swift */; };
@@ -61,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5637B78F252A1B1A00255B6D /* huntura.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = huntura.map; path = ../../../../../Downloads/huntura.map; sourceTree = "<group>"; };
+		5637B790252A1B2700255B6D /* Elevate_Hiking.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Elevate_Hiking.xml; path = ../../../../../Downloads/Elevate_osmtura/Elevate_Hiking.xml; sourceTree = "<group>"; };
 		563DF880251A50DC00FC3313 /* MapFileInputSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileInputSerializer.swift; sourceTree = "<group>"; };
 		563DF88D251B5AC600FC3313 /* MapFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileReader.swift; sourceTree = "<group>"; };
 		563DF892251B5B2B00FC3313 /* MapFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileInfo.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 		563DF87F251A4CFD00FC3313 /* MapsforgeReader-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				5637B78F252A1B1A00255B6D /* huntura.map */,
+				5637B790252A1B2700255B6D /* Elevate_Hiking.xml */,
 				563DF8A9251B6B3D00FC3313 /* Utilities */,
 				5660D7B22520C9F8007DC669 /* Building blocks */,
 				563DF89A251B60A700FC3313 /* Rendering */,
@@ -355,8 +361,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5637B795252A1B3F00255B6D /* huntura.map in Resources */,
 				56DE51F125176E47003E258C /* LaunchScreen.storyboard in Resources */,
 				56DE51EE25176E47003E258C /* Assets.xcassets in Resources */,
+				5637B791252A1B2700255B6D /* Elevate_Hiking.xml in Resources */,
 				56DE51E925176E44003E258C /* Main.storyboard in Resources */,
 				5660D78C251F959C007DC669 /* TouristSigns.xcassets in Resources */,
 			);

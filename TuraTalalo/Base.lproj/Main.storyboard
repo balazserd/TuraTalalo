@@ -16,21 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMK-5w-ddI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pgd-Lh-9R8">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </skView>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zMK-5w-ddI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6gx-JN-3tg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zMK-5w-ddI" secondAttribute="trailing" id="cui-M8-P6f"/>
-                            <constraint firstItem="zMK-5w-ddI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lRd-IC-39J"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zMK-5w-ddI" secondAttribute="bottom" id="oxa-bL-iVG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pgd-Lh-9R8" secondAttribute="trailing" id="CDV-Cr-2c7"/>
+                            <constraint firstItem="pgd-Lh-9R8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JbS-qI-Ja0"/>
+                            <constraint firstItem="pgd-Lh-9R8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MKj-iS-3iY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pgd-Lh-9R8" secondAttribute="bottom" id="QOx-cU-Vjd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mapSpriteView" destination="zMK-5w-ddI" id="CiM-J8-pEj"/>
+                        <outlet property="mapView" destination="pgd-Lh-9R8" id="g39-LH-zEo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
