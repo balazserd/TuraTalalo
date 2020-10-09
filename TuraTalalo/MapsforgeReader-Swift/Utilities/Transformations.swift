@@ -70,8 +70,7 @@ final class Transformation {
         pixelsToMeters(CGFloat(tx + 1) * tileSize + CGFloat(buffer), CGFloat(ty + 1) * tileSize + CGFloat(buffer),
                        zoom, &bottomRightPoint)
 
-        bounds = CGRect(x: topLeftPoint.x, y: topLeftPoint.y,
-                        width: bottomRightPoint.x - topLeftPoint.x, height: bottomRightPoint.y - topLeftPoint.y)
+        bounds = CGRect(topLeft: topLeftPoint, bottomRight: bottomRightPoint)
     }
 
     class func tileLatLonBounds(_ tx: UInt32, _ ty: UInt32, _ zoom: UInt32, _ latLonBounds: inout CGRect) {
@@ -79,8 +78,8 @@ final class Transformation {
         tileBounds(tx, ty, zoom, &bounds, 0)
         metersToLatLon(bounds.minX, bounds.minY, &minLat, &minLon)
         metersToLatLon(bounds.maxX, bounds.maxY, &maxLat, &maxLon)
-        latLonBounds = CGRect(x: minLat, y: minLon,
-                              width: maxLat - minLat, height: maxLon - minLon)
+        latLonBounds = CGRect(x: minLon, y: minLat,
+                              width: maxLon - minLon, height: maxLat - minLat)
     }
 
     class func tilesWithinBounds(_ minLat: CGFloat, _ minLon: CGFloat, _ maxLat: CGFloat, _ maxLon: CGFloat,

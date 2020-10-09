@@ -30,15 +30,16 @@ final class MapRenderer {
         Transformation.latLonToMeters(boundingBox.maxY, boundingBox.maxX, &targetExtentsBottomRightPoint)
         let targetExtents = CGRect(topLeft: targetExtentsTopLeftPoint, bottomRight: targetExtentsBottomRightPoint)
         
-        let scale = targetExtents.width / targetRect.width
+//        let scale = targetExtents.width / targetRect.width
+        let scale = targetExtents.height / targetRect.height
         let extraWidth = ((2 * CGFloat(queryBuffer) + targetRect.width) * scale - targetExtents.width) / 2
         let extraHeight = ((2 * CGFloat(queryBuffer) + targetRect.height) * scale - targetExtents.height) / 2
 
         var queryExtents = targetExtents.insetBy(dx: 2 * extraWidth, dy: 2 * extraHeight)
 
         let renderingTransformation = CGAffineTransform.identity
-            .scaledBy(x: 0.5 / scale, y: -0.5 / scale)
-            .translatedBy(x: -targetExtents.minX, y: -targetExtents.maxY)
+            .scaledBy(x: 1 / scale, y: 1 / scale)
+            .translatedBy(x: -targetExtents.minX, y: -targetExtents.minY)
 
         let image = graphicsRenderer.image { uiGraphicsContext in
             let cgContext = uiGraphicsContext.cgContext
@@ -47,11 +48,11 @@ final class MapRenderer {
             cgContext.fill(graphicsRenderer.format.bounds)
 
             cgContext.saveGState()
-//            cgContext.concatenate(renderingTransformation)
 
-//            cgContext.addRect(targetExtents)
+            cgContext.concatenate(renderingTransformation)
             cgContext.setStrokeColor(UIColor.black.cgColor)
-            cgContext.stroke(CGRect(x:100,y:100,width:100,height:100))
+            cgContext.setLineWidth(2 / cgContext.userSpaceToDeviceSpaceTransform.a)
+            cgContext.stroke(targetExtents)
 
             cgContext.restoreGState()
         }
