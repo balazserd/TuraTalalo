@@ -34,7 +34,7 @@ final class RenderingRule {
 
     func match(categories: [String], tags: [String : String], zoom: UInt8, isClosed: Bool, isWay: Bool,
                renderingInstructions: inout [RenderingInstruction]) -> Bool {
-        if category == nil && categories.first(where: { $0 == category }) == nil { return false }
+        if category != nil && categories.first(where: { $0 == category }) == nil { return false }
         if zoom < minimumZoomLevel || zoom > maximumZoomLevel { return false }
         if (closed == .yes && !isClosed) || (closed == .no && isClosed) { return false }
         if (element == .way && !isWay) || (element == .node && isWay) { return false }

@@ -31,76 +31,35 @@ final class MapFileInputSerializer {
     }
     //MARK:- UInt readers
     func readUInt8() -> UInt8 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 1, forType: "UInt8")
-        #endif
-
         guard let uInt8Data = try? fileHandle.read(upToCount: 1) else { fatalError() }
         let uInt8 = UInt8(bigEndian: uInt8Data.withUnsafeBytes { $0.load(as: UInt8.self) })
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return uInt8
     }
 
     func readUInt16() -> UInt16 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 2, forType: "UInt16")
-        #endif
-
         guard let uInt16Data = try? fileHandle.read(upToCount: 2) else { fatalError() }
         let uInt16 = UInt16(bigEndian: uInt16Data.withUnsafeBytes { $0.load(as: UInt16.self) })
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return uInt16
     }
 
     func readUInt32() -> UInt32 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 4, forType: "UInt32")
-        #endif
-
         guard let uInt32Data = try? fileHandle.read(upToCount: 4) else { fatalError() }
         let uInt32 = UInt32(bigEndian: uInt32Data.withUnsafeBytes { $0.load(as: UInt32.self) })
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return uInt32
     }
 
     func readUInt64() -> UInt64 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 8, forType: "UInt64")
-        #endif
-
         guard let uInt64Data = try? fileHandle.read(upToCount: 8) else { fatalError() }
         let uInt64 = UInt64(bigEndian: uInt64Data.withUnsafeBytes { $0.load(as: UInt64.self) })
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return uInt64
     }
 
     //Variable byte encoded UnsignedInt64 reader
     func readVarUInt64() throws -> UInt64 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 0, forType: "VarUInt64")
-        #endif
-
         var value: UInt64 = 0
         var shift: UInt = 0
 
@@ -114,10 +73,6 @@ final class MapFileInputSerializer {
             if byteValue & 0x80 == 0 { break }
             if shift > 63 { throw Error.tooLongUInt64 }
         }
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return value
     }
@@ -140,11 +95,6 @@ final class MapFileInputSerializer {
 
     //Variable byte encoded SignedInt64 reader
     func readVarInt64() -> Int64 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 0, forType: "VarInt64")
-        #endif
-
         var value: Int64 = 0
         var shift: UInt = 0
         var byteValue: UInt8 = UInt8()
@@ -164,36 +114,18 @@ final class MapFileInputSerializer {
             value |= Int64((UInt64(byteValue) & _0x3full) << shift)
         }
 
-        #if DEBUG
-        printCurrentOffset()
-        #endif
-
         return value
     }
     //MARK:- String reader
     func readUTF8EncodedString() throws -> String {
         let length = Int(try! readVarUInt64())
 
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: length, forType: "String")
-        #endif
-
         guard let stringData = try? fileHandle.read(upToCount: length) else { fatalError() }
         guard let str = String(data: stringData, encoding: .utf8) else { fatalError() }
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
 
         return str
     }
     func readOffset() -> Int64 {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: 5, forType: "CharArray[5]")
-        #endif
-
         guard let charsData = try? fileHandle.read(upToCount: 5) else { fatalError() }
         var charArray = Array(repeating: UTF8Char(), count: 5)
         _  = charArray.withUnsafeMutableBytes { charsData.copyBytes(to: $0) }
@@ -206,24 +138,11 @@ final class MapFileInputSerializer {
             | Int64((Int32(charArray[3]) & _0xffl)) << 8
             | Int64((Int32(charArray[4]) & _0xffl))
 
-        #if DEBUG
-        printCurrentOffset()
-        #endif
-
         return value
     }
     //MARK:- Misc
     func skip(numberOfBytes n: Int) {
-        #if DEBUG
-        printCurrentOffset()
-        printAmountOfBytesThatShouldBeRead(byteCount: n, forType: "Skippable bytes")
-        #endif
-
         _ = try! fileHandle.read(upToCount: n)
-
-        #if DEBUG
-        printCurrentOffset()
-        #endif
     }
     func movePointer(toFileOffset offset: UInt64) {
         try! fileHandle.seek(toOffset: offset)

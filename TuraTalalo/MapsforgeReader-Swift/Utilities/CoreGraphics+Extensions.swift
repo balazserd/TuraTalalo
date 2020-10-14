@@ -14,3 +14,11 @@ extension CGRect {
                       width: bottomRight.x - topLeft.x, height: bottomRight.y - topLeft.y)
     }
 }
+
+extension CGContext {
+    func withNewSavedState(action: () -> ()) {
+        self.saveGState()
+        action()
+        self.restoreGState()
+    }
+}

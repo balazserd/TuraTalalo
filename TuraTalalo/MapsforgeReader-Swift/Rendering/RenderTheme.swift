@@ -86,9 +86,12 @@ final class RenderTheme : NSObject {
         return safeLayer?.overlays?.map { $0.id }
     }
 
-    func match(layerId: String, tags: [String : String], zoom: UInt8, isClosed: Bool, isWay: Bool, renderingInstructionsOut: inout [RenderingInstruction]) -> Bool {
-        guard let layer = getSafeLayer(withId: layerId) else { return false }
-        let categories = getCategories(forLayer: layer) ?? []
+    func match(layerId: String?, tags: [String : String], zoom: UInt8, isClosed: Bool, isWay: Bool, renderingInstructionsOut: inout [RenderingInstruction]) -> Bool {
+        var categories = [String]()
+        if layerId != nil {
+            guard let layer = getSafeLayer(withId: layerId!) else { return false }
+            categories = getCategories(forLayer: layer) ?? []
+        }
 
         let matchKey = Self.makeMatchString(from: tags, layerId: layerId, zoom: zoom, isClosed: isClosed, isWay: isWay)
         if let instructions = ruleMatchCache.object(forKey: ValueTypeWrapper(matchKey)) {
@@ -104,9 +107,9 @@ final class RenderTheme : NSObject {
         return !renderingInstructionsOut.isEmpty
     }
 
-    class func makeMatchString(from keyValueDictionary: [String : String], layerId: String, zoom: UInt8, isClosed: Bool, isWay: Bool) -> String {
+    class func makeMatchString(from keyValueDictionary: [String : String], layerId: String?, zoom: UInt8, isClosed: Bool, isWay: Bool) -> String {
         var matchString = ""
-        matchString += "\(layerId);"
+        matchString += "\(layerId ?? "");"
 
         let unneededKeys = ["name", "addr:housenumber", "ref", "ele"]
         let kvDictWithoutNotNeededPairs = keyValueDictionary.filter { !unneededKeys.contains($0.key) }

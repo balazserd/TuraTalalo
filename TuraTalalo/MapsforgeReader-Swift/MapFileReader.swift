@@ -171,8 +171,8 @@ final class MapFileReader {
         var queryBox = CGRect()
         Transformation.tileBounds(key.x, key.y, UInt32(key.z), &queryBox, 0)
 
-//        let gtk = key.toGoogle()
-        let gtk = key
+        let gtk = key.toGoogle()
+//        let gtk = key
         var zoom = min(mapFileInfo.maximumZoomLevel, gtk.z)
         zoom = max(mapFileInfo.minimumZoomLevel, zoom)
 
@@ -229,7 +229,7 @@ final class MapFileReader {
                 let baseTileKey = TileKey(x: btx, y: bty, z: sfi.baseZoomLevel, isTopLeft: true)
                 Transformation.tileBounds(baseTileKey.x, baseTileKey.y, UInt32(baseTileKey.z), &boundingBox, 0)
 
-                let ignoreWays = boundingBox.intersects(queryBox)
+                let ignoreWays = !boundingBox.intersects(queryBox)
 
                 let row = bty - sfi.tileYMin
                 let col = btx - sfi.tileXMin
