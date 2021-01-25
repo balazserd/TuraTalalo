@@ -51,16 +51,16 @@ final class MapRenderer {
             cgContext.fill(targetExtents)
 
             //Bounding Rectangle
-            cgContext.withNewSavedState {
-                cgContext.concatenate(renderingTransformation)
-                cgContext.setStrokeColor(UIColor.black.cgColor)
-                cgContext.setLineWidth(2 / cgContext.userSpaceToDeviceSpaceTransform.a)
-                cgContext.addRect(targetExtents)
-                cgContext.drawPath(using: .stroke)
-            }
+//            cgContext.withNewSavedState {
+//                cgContext.concatenate(renderingTransformation)
+//                cgContext.setStrokeColor(UIColor.orange.cgColor)
+//                cgContext.setLineWidth(2 / cgContext.userSpaceToDeviceSpaceTransform.a)
+//                cgContext.addRect(targetExtents)
+//                cgContext.drawPath(using: .stroke)
+//            }
 
             //Ways
-            for baseTile in tile.baseTiles { //TODO middle tile never has ways!
+            for baseTile in tile.baseTiles { 
                 cgContext.withNewSavedState {
                     var tileExtents = CGRect()
                     Transformation.tileBounds(baseTile.key.x, baseTile.key.y, UInt32(baseTile.key.z), &tileExtents, 0)
@@ -73,15 +73,19 @@ final class MapRenderer {
                         cgContext.addRect(tileExtents)
                     }
 
-                    cgContext.clip()
+//                    cgContext.clip()
 
                     let instructions = self.getFilteredWayInstructions(layer: layerId, zoom: zoom, ways: baseTile.ways)
                     for wi in instructions {
                         let renderingInstruction = wi.renderingInstruction
                         let coordinates = wi.coordinates
 
-                        if renderingInstruction.type == .area { self.drawArea(in: mapRenderingContext, pointArrays: coordinates, instruction: renderingInstruction) }
-                        if renderingInstruction.type == .line { self.drawLine(in: mapRenderingContext, pointArrays: coordinates, instruction: renderingInstruction) }
+                        if renderingInstruction.type == .area {
+                            self.drawArea(in: mapRenderingContext, pointArrays: coordinates, instruction: renderingInstruction)
+                        }
+                        if renderingInstruction.type == .line {
+                            self.drawLine(in: mapRenderingContext, pointArrays: coordinates, instruction: renderingInstruction)
+                        }
                     }
                 }
             }
@@ -112,7 +116,17 @@ final class MapRenderer {
                 context.setFillColor(instruction.fill!)
                 context.drawPath(using: .fillStroke)
             } else {
-                fatalError()
+                context.clip()
+                if let fillImage = UIImage(named: instruction.sourceFileName!) {
+                    UIGraphicsBeginImageContextWithOptions(fillImage.size, false, fillImage.scale)
+                    fillImage.draw(at: .zero, blendMode: .normal, alpha: 0.3)
+                    let fadedFillImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
+                    UIGraphicsEndImageContext()
+
+                    if let fadedFillImage = fadedFillImage {
+                        context.draw(fadedFillImage, in: CGRect(x: 0, y: 0, width: fadedFillImage.width, height: fadedFillImage.height), byTiling: true)
+                    }
+                }
             }
         }
     }
@@ -163,7 +177,7 @@ final class MapRenderer {
         for pathPoints in pointArrays {
             context.beginPath()
             let path = CGMutablePath()
-            path.addLines(between: pathPoints.map { CGPoint(x: $0.x, y: $0.y - 39135) }) //TODO why??
+            path.addLines(between: pathPoints.map { CGPoint(x: $0.x, y: $0.y - 2446) }) //TODO why??
 
             if shouldClose {
                 path.closeSubpath()
